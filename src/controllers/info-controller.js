@@ -1,5 +1,7 @@
+ const {StatusCodes} = require("http-status-codes");
+
 const health = (req, res) => {
-    return res.status(200).json({
+    return res.status(StatusCodes.OK).json({
         success: true,
         message: "Server is healthy",
         error: {},

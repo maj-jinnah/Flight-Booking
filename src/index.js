@@ -16,5 +16,11 @@ app.use("/api", apiRoutes);
 
 app.listen(ServerConfig.PORT, () => {
     console.log(`server is running on ${ServerConfig.PORT}`);
-    Logger.info()    
+
+    Logger.log({
+        label: 'root-file: index.js',
+        level: 'info',
+        message: `server is running on ${ServerConfig.PORT}`,
+    });
+
 })

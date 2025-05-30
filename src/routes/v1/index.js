@@ -1,9 +1,15 @@
 const express = require("express");
 const router = express.Router();
 
-const {infoController} = require("../../controllers");
+const {InfoController} = require("../../controllers");
+const airplaneRoutes = require("./airplane-route");
 
-router.get('/health', infoController.health);
+// localhost:3000/api/v1
+
+router.use('/airplanes', airplaneRoutes);
+
+router.get('/health', InfoController.health);
+
 
 
 module.exports = router;

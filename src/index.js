@@ -22,5 +22,9 @@ app.listen(ServerConfig.PORT, () => {
         level: 'info',
         message: `server is running on ${ServerConfig.PORT}`,
     });
+    // Logger.info({
+    //     label: 'root-file: index.js',
+    //     message: `server is running on ${ServerConfig.PORT}`,
+    // })
 
 })

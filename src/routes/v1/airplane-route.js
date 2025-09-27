@@ -8,5 +8,7 @@ const { AirplaneMiddleware } = require("../../middlewares");
 router.post('/', AirplaneMiddleware.creatingAirplaneValidation, AirplaneController.createAirplane);
 router.get('/', AirplaneController.getAirplanes);
 router.get('/:id', AirplaneController.getSingleAirplane);
+router.delete('/:id', AirplaneController.deleteAirplane);
+router.patch('/:id', AirplaneController.updateAirplane);
 
 module.exports = router;

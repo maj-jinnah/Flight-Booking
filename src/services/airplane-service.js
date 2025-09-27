@@ -34,8 +34,6 @@ const getSingleAirplane = async (airplaneId) => {
         const airplane = await airplaneRepository.findOne(airplaneId);
         return airplane;
     } catch (error) {
-
-        console.log('error --- ', error);
         if (error.statusCode == StatusCodes.NOT_FOUND) {
             throw new AppError('The airplane you requested is not found', error.statusCode);
         }
@@ -43,8 +41,34 @@ const getSingleAirplane = async (airplaneId) => {
     }
 }
 
+const deleteAirplane = async (airplaneId) => {
+    try {
+        const response = await airplaneRepository.delete(airplaneId);
+        return response;
+    } catch (error) {
+        if (error.statusCode == StatusCodes.NOT_FOUND) {
+            throw new AppError('The airplane you requested is not found', error.statusCode);
+        }
+        throw new AppError('Cannot delete the airplane', StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+
+const updateAirplane = async (airplaneId, data) => {
+    try {
+        const response = await airplaneRepository.update(airplaneId, data);
+        return response;
+    } catch (error) {
+        if (error.statusCode == StatusCodes.NOT_FOUND) {
+            throw new AppError('The airplane you requested is not found', error.statusCode);
+        }
+        throw new AppError('Cannot update the airplane', StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+
 module.exports = {
     createAirplane,
     getAirplanes,
-    getSingleAirplane
+    getSingleAirplane,
+    deleteAirplane,
+    updateAirplane
 }

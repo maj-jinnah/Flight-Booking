@@ -38,7 +38,28 @@ const deleteCity = async (req, res) => {
     }
 }
 
+const updateCity = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { name } = req.body;
+        if (!name) {
+            throw new AppError(['City name not found in the request'], StatusCodes.BAD_REQUEST);
+        }
+        const response = await CityService.updateCity(id, { name });
+        SuccessResponse.data = response;
+        return res
+            .status(StatusCodes.OK)
+            .json(SuccessResponse);
+    } catch (error) {
+        ErrorResponse.error = error;
+        return res
+            .status(error.statusCode)
+            .json(ErrorResponse);
+    }
+}
+
 module.exports = {
     createCity,
-    deleteCity
+    deleteCity,
+    updateCity
 }

@@ -33,7 +33,20 @@ const deleteCity = async (cityId) => {
     }
 }
 
+const updateCity = async (cityId, data) => {
+    try {
+        const response = await cityRepository.update(cityId, data);
+        return response;
+    } catch (error) {
+        if (error.statusCode == StatusCodes.NOT_FOUND) {
+            throw new AppError('The city you requested is not found', error.statusCode);
+        }
+        throw new AppError('Cannot update the city', StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+
 module.exports = {
     createCity,
-    deleteCity
+    deleteCity,
+    updateCity
 }

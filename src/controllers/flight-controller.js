@@ -58,8 +58,24 @@ const getFlight = async (req, res) => {
     }
 }
 
+const updateSeats = async (req, res) => {
+    try {
+        const flight = await FlightService.updateSeats({ flightId: req.params.id, seats: req.body.seats, dec: req.body.dec });
+        SuccessResponse.data = flight;
+        return res
+            .status(StatusCodes.OK)
+            .json(SuccessResponse);
+    } catch (error) {
+        ErrorResponse.error = error;
+        return res
+            .status(error.statusCode)
+            .json(ErrorResponse);
+    }
+}
+
 module.exports = {
     createFlight,
     getAllFlights,
     getFlight,
+    updateSeats
 }

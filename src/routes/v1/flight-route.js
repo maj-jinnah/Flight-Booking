@@ -6,6 +6,6 @@ const { FlightMiddlewares } = require('../../middlewares');
 router.post('/', FlightController.createFlight);
 router.get('/', FlightController.getAllFlights);
 router.get('/:id', FlightController.getFlight);
-router.patch('/:id', FlightMiddlewares.validateUpdateSeatsRequest, FlightController.updateSeats);
+router.patch('/:id/seats', FlightMiddlewares.validateUpdateSeatsRequest, FlightController.updateSeats);
 
 module.exports = router;
